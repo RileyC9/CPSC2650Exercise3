@@ -1,0 +1,90 @@
+ALL OF THE FOLLOWING CONSOLE PRINT WILL ONLY PRINT THE CONTENT INSIDE THE "" EXCLUDING THE "" THEMSELVES. IT HIGHLIGHTS THE MESSAGE THAT WILL APPEAR IN THE CONSOLE FROM THE ANSWER ONLY.
+
+Q1a.
+
+The code declared x to be 1.
+And then declared a foo function which will access variable x and change it to 2, returning with a anonymous function that will put the value of x in the console.
+Then foo function got call with foo()() so the foo function and the anonymous function in its return statement will be invoked, which 2 will be printed in the console.
+At last, 2 will be printed in the console by console.log(x) again because the foo function can access and change the value of the global variable x to 2.
+
+Q1b.
+
+Items array is declared as [1,2,3] and result array is declared as an empty array.
+The the for loop is going to run 3 times, which it will store a function taking no parameter and returning the value of index variable i of the items array into the result array because i is declared with var.
+At last, console.log(result.map((x) => x())), which will print out result array, containing 3 undefined value in it.
+This is because i is declared by var keyword, making it accessiable outside of the for loop block. After the for loop finished running, the value of i is 3. So when console.log(result.map((x) => x())) got called, it mapped the value of items[3] into all 3 elements in result array. However, items[3] is undefined becuase the length of items array is 3 (max index value will be 2). Therefore, result array is printed on the console with [undefined, undefined, undefined].
+
+Q1c.
+
+It will print [1,2,3] at last. Because during the for loop, variable i is declaced by let making it only accessiable to the for loop with a block scope. The items[i] is acutually storing items[0],[1], and [2] instead of 3 items[i]. Therefore, when the functions inside result array got called, these functions return the value inside of items[0],[1],and [2].And [1,2,3] is printed in the console.
+
+Q1d.
+
+Items array is declared as [1,2,3] and result array is declared as an empty array.
+The the for loop is going to run 3 times, which it will store an Immediately Invoked Function Expression that return the value of items[x], and (i) that will invoke the Immediately Invoked Function with the value of i (1,2,3), into result array.
+Wehn console.log(result.map((x) => x())) is called, it will print [1,2,3] in the console because it invokes each element in result array returning items[i] that has been stored in result array.
+
+Q2a.
+
+Function resolveAfter2Seconds will:
+- prints "starting slow promise" on the console
+- return a new promise that resolve the promise with value "slow" and prints "slow promise is done" after 2 seconds
+
+Function resolveAfter1Second will:
+- prints "starting fast promise" on the console
+- return a new promise that resolve the promise with value "fast" and prints "fast promise is done" after 1 second
+
+So the console will print:
+- "starting slow promise" (resolveAfter2Seconds got called first)
+- "starting fast promise" (while waiting, resolveAfter1Second got called)
+- "done!" (while waiting, this will got printed)
+- "fast promise is done" (1 second after resolveAfter1Second)
+- "slow promise is done" (2 seconds after resolveAfter2Seconds)
+
+Q2b.
+
+The console will print:
+- "starting fast promise" (resolveAfter1Second got called first)
+- "starting slow promise" (while waiting, resolveAfter2Seconds got called)
+- "done!" (while waiting, this will got printed)
+- "fast promise is done" (1 second after resolveAfter1Second)
+- "slow promise is done" (2 seconds after resolveAfter2Seconds)
+
+Q2c.
+
+the console will print:
+- "starting slow promise" (resolveAfter2Seconds got called first)
+- "slow promise is done" (because of the await keyword, the console will wait for the resolveAfter2Seconds is done before executing the next line of code. So after 2 seconds from resolveAfter2Seconds is called, "slow promise is done" will be printed on the console.)
+- "starting fast promise" (then resolveAfter1Second got called)
+- "done!" (while waiting, this will got printed)
+- "fast promise is done" (1 second after resolveAfter1Second)
+
+Q3a.
+
+Function rejectAfter2Seconds will:
+- prints "starting slow promise" in the console
+- returns a new promise which will be reject with the value "slow" and throw an error with message "slow" after 2 seconds.
+
+Function rejectAfter1Seconds will:
+- prints "starting fast promise" in the console
+- returns a new promise which will be reject with the value of "fast" and throw an error with message "fast" after 1 second.
+
+So the console will print:
+- "== starting =="
+- "starting slow promise"
+- "it broke! slow"
+- "starting fast promise"
+- "it broke! fast"
+- "== done =="
+
+Q3b.
+
+The console will print:
+- "== starting =="
+- "starting fast promise"
+- "starting slow promise"
+- "it broke! fast"
+- "== done =="
+- "Uncaught (in promise) slow"
+The error happens because after rejectAfter1Second's error got caught by the try catch structure, it exits the try catch and run the next line. Therefore, when the error "slow" is thrown, it is uncaught."
+
